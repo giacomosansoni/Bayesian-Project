@@ -12,12 +12,12 @@ source("acceptreject_DAG.R")
 source("new_bcdag.R")
 source("update_DAG.R")
 
-q <- 4
-DAG <- matrix(c(0,1,1,0,0,0,0,1,0,0,0,1,0,0,0,0), nrow = q)
-DAG
-outDL <- rDAGWishart(n = 1, DAG = DAG, a = q, U = diag(1, q))
-outDL$D
-outDL$L
+#q <- 4
+#DAG <- matrix(c(0,1,1,0,0,0,0,1,0,0,0,1,0,0,0,0), nrow = q)
+#DAG
+#outDL <- rDAGWishart(n = 1, DAG = DAG, a = q, U = diag(1, q))
+#outDL$D
+#outDL$L
 
 q <- 8
 set.seed(123)
@@ -39,13 +39,13 @@ X
 #(collapse = FALSE) by fixing the number of final MCMC iterations and burn-in period as
 #S = 5000, B = 1000, while prior hyperparameters as a = q, U = Iq, w = 0.1. We implement the
 #approximate MCMC proposal (Section 4.2) by setting fast = TRUE:
-out_mcmc <- learn_DAG(S = 5000, burn = 1000, data = X, a = q, U = diag(1,q),
+#out_mcmc <- learn_DAG(S = 5000, burn = 1000, data = X, a = q, U = diag(1,q),
                       w = 0.1, fast = TRUE, save.memory = FALSE, collapse = FALSE)
-out_mcmc$Graphs #null, why?
-out_mcmc$L
-out_mcmc$D
-get_edgeprobs(learnDAG_output = out_mcmc) #diverso
-get_MAPdag(learnDAG_output = out_mcmc) #uguale
-get_MPMdag(learnDAG_output = out_mcmc) #uguale
+#out_mcmc$Graphs #null, why?
+#out_mcmc$L
+#out_mcmc$D
+#get_edgeprobs(learnDAG_output = out_mcmc) #diverso
+#get_MAPdag(learnDAG_output = out_mcmc) #uguale
+#get_MPMdag(learnDAG_output = out_mcmc) #uguale
 
 out_mcmc <- update_DAG(DAG, X, a=q, U=diag(1,q), w=0.1, fast=TRUE, collapse=FALSE)
